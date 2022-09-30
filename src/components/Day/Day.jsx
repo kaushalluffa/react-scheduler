@@ -33,7 +33,13 @@ const Day = ({ day, rowIdx }) => {
           setShowEventModal(true);
         }}
       ></div>
-      <div>
+      <div
+        className="event"
+        onClick={() => {
+          setDaySelected(day);
+          setShowEventModal(true);
+        }}
+      >
         {currentDayEvent.map((e, idx) => (
           <div
             key={idx}
