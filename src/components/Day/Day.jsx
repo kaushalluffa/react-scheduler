@@ -22,9 +22,9 @@ const Day = ({ day, rowIdx }) => {
     <div className="day">
       <header className="day__header">
         {rowIdx === 0 && <p className="day__dayName">{day.format("ddd")}</p>}
-        <p className={`day__numericDay ${currentDay()}`}>
-          {day.format("DD")}
-        </p>
+        <p className="day__dayName--mobile">{day.format("ddd")}</p>
+
+        <p className={`day__numericDay ${currentDay()}`}>{day.format("DD")}</p>
       </header>
       <div
         className="day__select"
@@ -32,13 +32,14 @@ const Day = ({ day, rowIdx }) => {
           setDaySelected(day);
           setShowEventModal(true);
         }}
-      >
+      ></div>
+      <div>
         {currentDayEvent.map((e, idx) => (
           <div
             key={idx}
             onClick={() => setSelectedEvent(e)}
-            className='day__event'
-            style={{backgroundColor:`${e.label}`}}
+            className="day__event"
+            style={{ backgroundColor: `${e.label}` }}
           >
             {e.title}
             <br />

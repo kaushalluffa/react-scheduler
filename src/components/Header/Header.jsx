@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <header className="header">
       <h1 className="header__heading">Calendar</h1>
-      <button onClick={handleReset} className="header__today">
+      <button onClick={handleReset} className="header__todayBtn">
         Today
       </button>
       <button onClick={handlePrev}>
