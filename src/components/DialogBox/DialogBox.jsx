@@ -5,8 +5,9 @@ import {
   Delete,
   DragHandle,
   Schedule,
-  Segment,
+  Segment
 } from "@mui/icons-material";
+import PersonIcon from "@mui/icons-material/Person";
 import React, { useContext, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
@@ -20,6 +21,9 @@ const DialogBox = () => {
   const [selectedLabel, setSelectedLabel] = useState(
     selectedEvent ? selectedEvent.label : labelsClasses[0]
   );
+  const names = ["Ankur", "Nathan", "Brandon", "Bahareh"];
+  const [name, setName] = useState(selectedEvent?selectedEvent.intervieweeName:'Ankur')
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,8 +32,10 @@ const DialogBox = () => {
       description,
       label: selectedLabel,
       day: daySelected.valueOf(),
-      id: selectedEvent? selectedEvent.id : Date.now(),
+      id: selectedEvent ? selectedEvent.id : Date.now(),
+      intervieweeName:name,
     };
+
     if (selectedEvent) {
       dispatch({ type: "update", payload: event });
     } else {
@@ -91,6 +97,23 @@ const DialogBox = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
             <span className="material-icons-outlined text-gray-400">
+              <PersonIcon />
+            </span>
+            <select
+              type="text"
+              name="options"
+              required
+              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            >
+              {names.map((name) => (
+                <option value={name} key={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+            <span className="material-icons-outlined text-gray-400">
               <Bookmark />
             </span>
             <div className="flex gap-x-2">
@@ -116,7 +139,7 @@ const DialogBox = () => {
             onClick={handleSubmit}
             className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
           >
-            Add
+            {selectedEvent?"Update": 'Add'}
           </button>
         </footer>
       </form>

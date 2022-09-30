@@ -23,18 +23,19 @@ function initialValue() {
 const ContextWrapper = ({ children }) => {
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
   const [daySelected, setDaySelected] = useState(dayjs());
+  const [intervieweeName, setIntervieweeName] = useState('Ankur');
   const [showEventModal, setShowEventModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [labels, setLabels] = useState([]);
   const [savedEvents, dispatch] = useReducer(eventReducer, [], initialValue);
-  useEffect(()=>{
-    localStorage.setItem('savedEvents', JSON.stringify(savedEvents));
-  },[savedEvents])
-  useEffect(()=>{
-    if(!showEventModal){
-      setSelectedEvent(null)
+  useEffect(() => {
+    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+  }, [savedEvents]);
+  useEffect(() => {
+    if (!showEventModal) {
+      setSelectedEvent(null);
     }
-  },[showEventModal])
+  }, [showEventModal]);
   return (
     <GlobalContext.Provider
       value={{
@@ -48,7 +49,8 @@ const ContextWrapper = ({ children }) => {
         dispatch,
         selectedEvent,
         setSelectedEvent,
-
+        intervieweeName,
+        setIntervieweeName,
         setLabels,
         labels,
       }}

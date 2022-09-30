@@ -7,7 +7,7 @@ const Day = ({ day, rowIdx }) => {
       ? "bg-blue-600 text-white rounded-full w-7"
       : "";
   };
-  const { setDaySelected, setShowEventModal, savedEvents,setSelectedEvent } =
+  const { setDaySelected, setShowEventModal, savedEvents,setSelectedEvent,intervieweeName } =
     useContext(GlobalContext);
   const [currentDayEvent, setCurrentDayEvent] = useState([]);
   useEffect(() => {
@@ -16,6 +16,7 @@ const Day = ({ day, rowIdx }) => {
     );
     setCurrentDayEvent(currentEvents);
   }, [savedEvents, day]);
+  
   return (
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col items-center">
@@ -38,8 +39,8 @@ const Day = ({ day, rowIdx }) => {
             className={`bg-${e.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
           >
             {e.title}
-            <br/>
-            {e.description}
+            <br />
+            With:{e.intervieweeName}
           </div>
         ))}
       </div>

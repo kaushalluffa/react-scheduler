@@ -15,5 +15,6 @@ const GlobalContext = createContext({
   labels: [],
   updateLabel: () => {},
   filteredEvents: [],
+  intervieweeName: ''
 });
 export default GlobalContext;
