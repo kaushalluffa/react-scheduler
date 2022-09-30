@@ -1,0 +1,44 @@
+.day {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__dayName {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  &__numericDay {
+    padding: 0.25rem;
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+  }
+  &__select {
+    flex: 1 1 0%;
+    cursor: pointer;
+  }
+  &__event {
+    padding: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-right: 0.75rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0.25rem;
+    color: white;
+  }
+}
+.currentDay {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 50%;
+}

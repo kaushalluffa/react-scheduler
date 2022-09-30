@@ -1,6 +1,10 @@
-.container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+.container {
+  min-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.bigCalendar {
+  display: flex;
+  flex: 1 1 0%;
 }

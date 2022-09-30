@@ -10,7 +10,15 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import React, { useContext, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
-const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
+import './DialogBox.scss'
+const labelsClasses = [
+  "#C47335",
+  "#8D909B",
+  "#3E442B",
+  "#2660A4",
+  "#BD1E1E",
+  "#ACACE6",
+];
 const DialogBox = () => {
   const { setShowEventModal, daySelected, dispatch, selectedEvent } =
     useContext(GlobalContext);
@@ -44,10 +52,10 @@ const DialogBox = () => {
     setShowEventModal(false);
   };
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/4">
-        <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
-          <span className="text-gray-400">
+    <div className="dialogBox">
+      <form className="form">
+        <header className="form__header">
+          <span style={{ color: "gray" }}>
             <DragHandle />
           </span>
           <div>
@@ -62,14 +70,14 @@ const DialogBox = () => {
               </button>
             )}
             <button onClick={() => setShowEventModal(false)}>
-              <span className="text-gray-400">
+              <span style={{ color: "gray" }}>
                 <Close />
               </span>
             </button>
           </div>
         </header>
-        <div className="p-3">
-          <div className="grid grid-cols-1/5 items-end gap-y-7">
+        <div className="form__container">
+          <div className="form__group">
             <div></div>
             <input
               type="text"
@@ -77,14 +85,14 @@ const DialogBox = () => {
               placeholder="Add title"
               value={title}
               required
-              className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="form__title"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
+            <span style={{ color: "gray" }}>
               <Schedule />
             </span>
             <p>{daySelected.format("dddd, MMMM DD")}</p>
-            <span className="material-icons-outlined text-gray-400">
+            <span style={{ color: "gray" }}>
               <Segment />
             </span>
             <input
@@ -93,17 +101,17 @@ const DialogBox = () => {
               placeholder="Add a description"
               value={description}
               required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="form__description"
               onChange={(e) => setDescription(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
+            <span style={{ color: "gray" }}>
               <PersonIcon />
             </span>
             <select
               type="text"
               name="options"
               required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="form__options"
               value={name}
               onChange={(e) => setName(e.target.value)}
             >
@@ -113,18 +121,19 @@ const DialogBox = () => {
                 </option>
               ))}
             </select>
-            <span className="material-icons-outlined text-gray-400">
+            <span style={{ color: "gray" }}>
               <Bookmark />
             </span>
-            <div className="flex gap-x-2">
+            <div className="form__labels">
               {labelsClasses.map((lblClass, i) => (
                 <span
                   key={i}
                   onClick={() => setSelectedLabel(lblClass)}
-                  className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                  className='label'
+                  style={{backgroundColor:`${lblClass}`}}
                 >
                   {selectedLabel === lblClass && (
-                    <span className="material-icons-outlined text-white text-sm">
+                    <span style={{color:'white',fontSize:'0.875rem', lineHeight:'1.25rem'}}>
                       <Check />
                     </span>
                   )}
@@ -133,13 +142,13 @@ const DialogBox = () => {
             </div>
           </div>
         </div>
-        <footer className="flex justify-end border-t p-3 mt-5">
+        <footer className="form__footer">
           <button
             type="submit"
             onClick={handleSubmit}
-            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
+            className="form__btn"
           >
-            {selectedEvent?"Update": 'Add'}
+            {selectedEvent ? "Update" : "Add"}
           </button>
         </footer>
       </form>

@@ -13,12 +13,10 @@ const App = () => {
   }, [monthIndex]);
   return (
     <>
-    {showEventModal&& 
-    <DialogBox/>
-    }
-      <div className="h-screen flex flex-col">
+      {showEventModal && <DialogBox />}
+      <div className="container">
         <Header monthIndex={monthIndex} />
-        <div className="flex flex-1">
+        <div className="bigCalendar">
           <Month month={currentMonth} />
         </div>
       </div>

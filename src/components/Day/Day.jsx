@@ -1,13 +1,14 @@
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
+import './Day.scss'
 const Day = ({ day, rowIdx }) => {
   const currentDay = () => {
     return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
-      ? "bg-blue-600 text-white rounded-full w-7"
+      ? "currentDay"
       : "";
   };
-  const { setDaySelected, setShowEventModal, savedEvents,setSelectedEvent,intervieweeName } =
+  const { setDaySelected, setShowEventModal, savedEvents,setSelectedEvent } =
     useContext(GlobalContext);
   const [currentDayEvent, setCurrentDayEvent] = useState([]);
   useEffect(() => {
@@ -18,15 +19,15 @@ const Day = ({ day, rowIdx }) => {
   }, [savedEvents, day]);
   
   return (
-    <div className="border border-gray-200 flex flex-col">
-      <header className="flex flex-col items-center">
-        {rowIdx === 0 && <p className="text-sm mt-1">{day.format("ddd")}</p>}
-        <p className={`text-sm p-1 my-1 text-center ${currentDay()}`}>
+    <div className="day">
+      <header className="day__header">
+        {rowIdx === 0 && <p className="day__dayName">{day.format("ddd")}</p>}
+        <p className={`day__numericDay ${currentDay()}`}>
           {day.format("DD")}
         </p>
       </header>
       <div
-        className="flex-1 cursor-pointer"
+        className="day__select"
         onClick={() => {
           setDaySelected(day);
           setShowEventModal(true);
@@ -36,7 +37,8 @@ const Day = ({ day, rowIdx }) => {
           <div
             key={idx}
             onClick={() => setSelectedEvent(e)}
-            className={`bg-${e.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+            className='day__event'
+            style={{backgroundColor:`${e.label}`}}
           >
             {e.title}
             <br />
